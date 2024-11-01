@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize') // Chamado o sequelize para conectar o banco
 const { FORCE } = require('sequelize/lib/index-hints')
-const sequelize = new Sequelize('test', 'root', 'bia12345', {  // fazendo a conexão com banco, primeiro parâmentro com a tabela o usuario a senha e objeto json com as {}
+const sequelize = new Sequelize('test', 'root', '', {  // fazendo a conexão com banco, primeiro parâmentro com a tabela o usuario a senha e objeto json com as {}
     host: "localhost", // Dizer qual servdor esta o banco, no caso na minha maquina
     dialect: 'mysql' //que tipo de banco de dados esta conectando
 })
