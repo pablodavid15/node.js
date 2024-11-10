@@ -1,0 +1,3 @@
+conec atlas: 20osaCgLGG9hKYfX
+
+para o instalado na maquina: "mongodb://localhost/lobos"

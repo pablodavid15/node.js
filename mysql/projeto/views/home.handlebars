@@ -1,0 +1,13 @@
+<h1>Lista de Posts: </h1>
+
+{{#each posts}} {{!-- estutura each para quando recebemos varios objtos de uma veze na view, ele praticamente diz para cada dados de variavel faça algo  --}}
+    <small>{{createdAt}}</small> 
+    <h1>{{titulo}}</h1>
+    <p>{{conteudo}}</p>
+    <a href="/deletar/{{id}}"><button>Deletar</button></a>
+    <hr>
+
+{{/each}}
+
+{{!--Caso não apareça od dados colacar 'dataValues.'' no começo--}}
+{{!-- {{posts}}  <- Variavel  --}}
