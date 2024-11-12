@@ -32,7 +32,7 @@
     
 
     //Public
-        app.use(express.static(path.join(__dirname,"public")))
+        app.use(express.static(path.join(__dirname,"/public"))) //dizendo o caminho absoluto para pasta 'public'
 //Rotas
     //adm
         app.use('/admin', admin)

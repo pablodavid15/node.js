@@ -4,7 +4,7 @@
 
 // rota
 router.get('/', (req, res) => {
-    res.send('Pagina Principal do painel ADM')
+    res.render('admin/index')
 })
 
 router.get('/posts', (req, res) => {
