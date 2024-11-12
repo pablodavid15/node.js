@@ -1,5 +1,5 @@
 // chamndo o mongodb
-const mongoose = require("mongoose")
+    const mongoose = require("mongoose")
 
 // schema para o model
     const {Schema} = mongoose 
@@ -7,7 +7,7 @@ const mongoose = require("mongoose")
 // configuração do mongoose
    // funcion(){} == () => {}  'arrow function'   
         mongoose.Promise = global.Promise //evitar alguns erros durando cronstrução 
-        mongoose.connect("mongodb://localhost/lobos", { //conectando com mongo
+        mongoose.connect("mongodb+srv://Pablo_David:20osaCgLGG9hKYfX@cluster0.khop5.mongodb.net/mongoapp?retryWrites=true&w=majority&appName=Cluster0", { //conectando com mongo
             
         }).then(() => {
             console.log('MongoDB conectado...')
@@ -51,10 +51,10 @@ const mongoose = require("mongoose")
 
 // Inserindo dados
         new Usuario({
-            nome: 'Paula',
-            sobrenome: 'Beatriz',
-            email: 'paula_biatest@gmail.com',
-            idade: 17,
+            nome: 'Pablo',
+            sobrenome: 'David',
+            email: 'pablodavidtest@gmail.com',
+            idade: 22,
             pais: 'Brasil'
         }).save().then(() => {
             console.log('Salvo com sucesso!')
