@@ -32,7 +32,7 @@
     
 
     //Public
-        app.use(express.static(path, path.join(__dirname,"public")))
+        app.use(express.static(path.join(__dirname,"public")))
 //Rotas
     //adm
         app.use('/admin', admin)
