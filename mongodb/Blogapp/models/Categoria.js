@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const {Schema} = require('mongoose')
 
-const categoria = new Schema({
+const Categoria = new Schema({
     nome: {
         type: String,
         required: true
@@ -17,3 +17,5 @@ const categoria = new Schema({
         default: Date.now()
     }
 })
+
+const categoria = mongoose.model('categorias', Categoria)

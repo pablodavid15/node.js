@@ -13,10 +13,34 @@
         //adm
             const admin = require('./routes/admin')
 
-    //Bootstrap
+    //path
         const path = require('path')
 
-//Configurações 
+    //Carregando o session
+        const session = require('express-session')
+    
+    //Carregando o connect-flash
+        const flash = require('connect-flash')
+
+//Configurações
+
+    //Sessão
+        app.use(session({
+            secret: "p%Q5eFm",
+            resave: true,
+            saveUninitialized: true
+        }))
+
+    //flash
+        app.use(flash())
+
+    //configurando middlewares
+        app.use((req, res, next) => {
+            res.locals.success_msg = req.flash('success_msg')
+            res.locals.error_msg = req.flash('error_msg')
+            next()
+        })
+
     //handlebars
         app.engine('handlebars', handlebars.engine({defaultLayout: 'main', runtimeOptions: {
             allowProtoMethodsByDefault: true,
@@ -30,13 +54,15 @@
 
     //mongosse
         mongoose.Promise = global.Promise
-        mongoose.connect('mongodb://localhost/blogapp').then(() => {
+        mongoose.connect('mongodb+srv://Pablo_David:20osaCgLGG9hKYfX@cluster0.khop5.mongodb.net/blogapp?retryWrites=true&w=majority&appName=Cluster0"').then(() => {
             console.log('Banco conectado com sucesso')
         }).catch((err) => {
             console.log(`Erro ao conectar: ${err}`)
         })
     //Public
         app.use(express.static(path.join(__dirname,"/public"))) //dizendo o caminho absoluto para pasta 'public'
+
+    
 //Rotas
     //adm
         app.use('/admin', admin)
