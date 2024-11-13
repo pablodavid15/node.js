@@ -29,8 +29,12 @@
         app.use(express.json())
 
     //mongosse
-    
-
+        mongoose.Promise = global.Promise
+        mongoose.connect('mongodb://localhost/blogapp').then(() => {
+            console.log('Banco conectado com sucesso')
+        }).catch((err) => {
+            console.log(`Erro ao conectar: ${err}`)
+        })
     //Public
         app.use(express.static(path.join(__dirname,"/public"))) //dizendo o caminho absoluto para pasta 'public'
 //Rotas
