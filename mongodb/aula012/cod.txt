@@ -1,3 +1,3 @@
-conec atlas: 20osaCgLGG9hKYfX
+conec atlas: pa20osaCgLGG9hKYfXbia
 
 para o instalado na maquina: "mongodb://localhost/lobos"
