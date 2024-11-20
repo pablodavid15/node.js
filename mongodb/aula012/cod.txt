@@ -2,4 +2,3 @@ conec atlas: pa20osaCgLGG9hKYfXbia
 
 para o instalado na maquina: "mongodb://localhost/lobos"
 
-gemi: AIzaSyDLQZPDGMY9pJDQ08PidwDk0_MeVIwufwg
