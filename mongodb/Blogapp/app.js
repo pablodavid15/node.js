@@ -9,10 +9,6 @@
     //Mongoosse
         const mongoose = require('mongoose')
 
-    //importando rotas
-        //adm
-            const admin = require('./routes/admin')
-
     //path
         const path = require('path')
 
@@ -21,6 +17,10 @@
     
     //Carregando o connect-flash
         const flash = require('connect-flash')
+    
+    //importando rotas
+        //adm
+        const admin = require('./routes/admin')
 
 //Configurações
 
@@ -54,7 +54,7 @@
 
     //mongosse
         mongoose.Promise = global.Promise
-        mongoose.connect("mongodb://localhost/blogapp").then(() => {
+        mongoose.connect("mongodb+srv://Pablo_David:20osaCgLGG9hKYfX@cluster0.khop5.mongodb.net/blogapp?retryWrites=true&w=majority&appName=Cluster0",).then(() => {
             console.log('Banco conectado com sucesso')
         }).catch((err) => {
             console.log(`Erro ao conectar: ${err}`)
