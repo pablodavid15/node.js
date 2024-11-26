@@ -54,7 +54,7 @@
 
     //mongosse
         mongoose.Promise = global.Promise
-        mongoose.connect("",).then(() => {
+        mongoose.connect("mongodb://localhost/blogapp",).then(() => {
             console.log('Banco conectado com sucesso')
         }).catch((err) => {
             console.log(`Erro ao conectar: ${err}`)

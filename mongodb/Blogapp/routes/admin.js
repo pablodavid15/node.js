@@ -7,6 +7,8 @@
     const mongoose = require('mongoose')
     require('../models/Categoria')
     const Categoria = mongoose.model('categorias')
+    require('../models/Postagem')
+    const Postagem = mongoose.model('postagens')
 
 // rota
     router.get('/', (req, res) => {
@@ -142,11 +144,65 @@
     router.post('/categorias/deletar/', (req, res) => {
         Categoria.deleteOne({_id: req.body.id}).then(() => {
             req.flash('success_msg', 'Categoria deletada com sucesso!')
+            console.log(`Cadastrada a postagem com sucesso`)
             res.redirect('/admin/categorias')
         }).catch((err) => {
             req.flash('error_msg', 'Houve um erro ao delalar categoria')
+            console.log(`Erro ao cadastrar postagem: ${err}`)
             res.redirect('/admin/categorias')
         })
+    })
+
+    router.get('/postagens', (req, res) => {
+        Postagem.find().populate('categoria').sort({date: 'desc'}).then((postagens) => {
+          res.render('admin/postagens', {postagens: postagens})  
+        }).catch((err) => {
+            req.flash('error_msg', 'Houve um erro ao listar as postagens')
+            console.log(`Erro: ${err}`)
+            res.redirect('/admin')
+        })
+        
+    })
+
+    router.get('/postagens/add', (req, res) => {
+        Categoria.find().then((categorias) => {
+            res.render('admin/addpostagem', {categorias: categorias})
+        }).catch((err) => {
+            req.flash('error_msg', 'Houve um erro ao carregar o formulário')
+            res.redirect('/admin')
+        })
+    })
+
+    router.post('/postagens/nova', (req, res) => {
+
+        var erros = [] //Validaçaõ de formularios
+
+        if(req.body.categoria == "0"){
+            erros.push({texto: 'Categoria, inválida, registre uma categoria'})
+        }
+
+        if(erros.length > 0){
+            res.render('admin/addpostagem', {erros: erros})
+        }else {
+                const novaPostagem = {
+                    titulo: req.body.titulo,
+                    descricao: req.body.descricao,
+                    conteudo: req.body.conteudo,
+                    categoria: req.body.categoria,
+                    slug: req.body.slug
+            }
+
+            new Postagem(novaPostagem).save().then(() => {
+                req.flash('success_msg', 'Postagem postada com sucesso')
+                console.log(`Cadastrada a postagem com sucesso`)
+                res.redirect('/admin/postagens')
+            }).catch((err) => {
+                req.flash('error_msg', 'Houve um erro ao postar')
+                console.log(`Erro ao cadastrar postagem: ${err}`)
+                res.redirect('/admin/postagens')
+            })
+        }
+        
     })
 
 // exportando a rota
